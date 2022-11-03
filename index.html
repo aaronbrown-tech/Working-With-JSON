@@ -12,22 +12,26 @@
   </div>
   <script src="./boston.js"></script>
   <script>
-
+    //Gets a handled of the div with id "container".
     ((container = document.getElementById('container')) => {
+      //Creating a people object of names and salaries.
       let people = boston.data.map(person => 
       { return { "name": person[8], "salary": person[11] } });
+      //Sorting the salaries in the people's object.
       people.sort((a, b) => b.salary - a.salary);
+      //Slicing out the first 5 elements of the peoples array of objects.
       let topFive = people.slice(0, 5);
-      
+      //Initializing an empty string.
       let html ='';
-      console.log(JSON.stringify(topFive))
-
+      //Apending the names and salaries to the html string with h tags.
       topFive.forEach(person => {
          html += '<li class="topFive">' +
+           //Replacing the comma with a space.
            '<h2>' + person.name.replaceAll(",", " ") + '</h2>' +
            '<h3>' + person.salary + '</h3>' +
           '</li>'
       })
+      //Injecting the html string to an unordered list.
       container.innerHTML = '<ul id = "boston">' + html + '</ul>';
     })()
 
