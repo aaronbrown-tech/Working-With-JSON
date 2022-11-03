@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+    <!-- populated by JS-->
+  </div>
+  <script src="./boston.js"></script>
+  <script>
+
+    ((container = document.getElementById('container')) => {
+      let people = boston.data.map(person => 
+      { return { "name": person[8], "salary": person[11] } });
+      people.sort((a, b) => b.salary - a.salary);
+      let topFive = people.slice(0, 5);
+      
+      let html ='';
+      console.log(JSON.stringify(topFive))
+
+      topFive.forEach(person => {
+         html += '<li class="topFive">' +
+           '<h2>' + person.name.replaceAll(",", " ") + '</h2>' +
+           '<h3>' + person.salary + '</h3>' +
+          '</li>'
+      })
+      container.innerHTML = '<ul id = "boston">' + html + '</ul>';
+    })()
+
+  </script>
+</body>
+</html>
+
+
